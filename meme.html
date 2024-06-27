@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Meme</title>
+    <style>
+        /* Basic styling for the buttons and the image */
+        #meme {
+            position: absolute;
+            width: 100px; /* Adjust size as needed */
+        }
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Comment: Your Name - Assignment for Moving Meme Image -->
+    <button id="startBtn">Start</button>
+    <button id="stopBtn" disabled>Stop</button>
+    <img src="C:/Users/gen._war/Desktop/programs/New folder/download.jfif" id="meme" alt="Meme Image">
+
+    <script>
+        // Selecting elements from the document
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const meme = document.getElementById('meme');
+
+        let moveInterval; // Will hold the interval ID for the movement
+
+        // Function to start moving the image
+        function startMoving() {
+            const maxX = window.innerWidth - meme.width;
+            const maxY = window.innerHeight - meme.height;
+            moveInterval = setInterval(() => {
+                meme.style.left = Math.random() * maxX + 'px';
+                meme.style.top = Math.random() * maxY + 'px';
+            }, 1000); // Moves every 1000 milliseconds (1 second)
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+        }
+
+        // Function to stop moving the image
+        function stopMoving() {
+            clearInterval(moveInterval);
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+
+        // Wiring buttons to their respective functions
+        startBtn.onclick = startMoving;
+        stopBtn.onclick = stopMoving;
+    </script>
+</body>
+</html>
